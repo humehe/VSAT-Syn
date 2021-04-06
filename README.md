@@ -64,39 +64,40 @@ The Example.py script contains an example to generate 27 datacubes of with spati
 The following snippet will generate 27 datacubes with the following dimensions _256 X 256 X 17_.
 
 ```python
-		Synthetic_Cube_Output = Create_Synthetic_Cube(nx,ny,nz,sigma_fwhm_2d,
-								A_min_csi         = A_min          , A_max_csi        = A_max                           ,
-								ofs_min_csi       = ofs_min        , ofs_max_csi      = ofs_max                         ,
-								sigmax_min_csi    = sigmax_min     , sigmax_max_csi   = sigmax_max                      ,
-								sigmay_min_csi    = sigmay_min     , sigmay_max_csi   = sigmay_max                      ,
-								sx_fxd_str        = sigmax_max     , sy_fxd_str       = sigmay_max                      ,
-								chn_wth_sze       = channel_width  , theta_csi        = Theta                           ,
-								theta_vl_1dg_str  = Theta_val      ,
-								shape_csi         = starshape      , amp_star_gauss   = True                            ,
-								fixed_width_str   = fixed_width_str, sgm_1d_str_fxd   = str_sgm_rnd_cbe                 ,
-								#fixed_width_str   = False         , sgm_1d_str_fxd   = str_sgm_rnd_fxd_cbe[rep_nse],
-								A_min_1dg_str     = A_min_1dg      , A_max_1dg_str    = A_max_1dg                       ,
-								sigma_min_1dg_str = sigma_min_1dg  , sigma_max_1dg_str = sigma_max_1dg                  ,
-								fixed_amp_ns      = fixed_amp_ns   , amp_nse_type      = 'constant'                     , 
-								amp_1d_nse_fxd    = nse_amp_rnd_cbe,
-								A_min_1dg_nse     = n_noise_min    , A_max_1dg_nse     = n_noise_max                    ,
-								cube_ofn_sfx      = str(repetition)+'-'+str(individual_datacube),
-								dst_img_dir       = img_dir_res
-								)
+Synthetic_Cube_Output = Create_Synthetic_Cube(nx,ny,nz,sigma_fwhm_2d,
+						A_min_csi         = A_min          , A_max_csi        = A_max                           ,
+						ofs_min_csi       = ofs_min        , ofs_max_csi      = ofs_max                         ,
+						sigmax_min_csi    = sigmax_min     , sigmax_max_csi   = sigmax_max                      ,
+						sigmay_min_csi    = sigmay_min     , sigmay_max_csi   = sigmay_max                      ,
+						sx_fxd_str        = sigmax_max     , sy_fxd_str       = sigmay_max                      ,
+						chn_wth_sze       = channel_width  , theta_csi        = Theta                           ,
+						theta_vl_1dg_str  = Theta_val      ,
+						shape_csi         = starshape      , amp_star_gauss   = True                            ,
+						fixed_width_str   = fixed_width_str, sgm_1d_str_fxd   = str_sgm_rnd_cbe                 ,
+						#fixed_width_str   = False         , sgm_1d_str_fxd   = str_sgm_rnd_fxd_cbe[rep_nse],
+						A_min_1dg_str     = A_min_1dg      , A_max_1dg_str    = A_max_1dg                       ,
+						sigma_min_1dg_str = sigma_min_1dg  , sigma_max_1dg_str = sigma_max_1dg                  ,
+						fixed_amp_ns      = fixed_amp_ns   , amp_nse_type      = 'constant'                     , 
+						amp_1d_nse_fxd    = nse_amp_rnd_cbe,
+						A_min_1dg_nse     = n_noise_min    , A_max_1dg_nse     = n_noise_max                    ,
+						cube_ofn_sfx      = str(repetition)+'-'+str(individual_datacube),
+						dst_img_dir       = img_dir_res)
 ```
 
 ###### "Stacking"
 ```python
-	Stack_Res      = Cube_Stack(cubetoread,stk_ofn_prfx,weights,
-								sig_clp     = False,sufix=channel_width,freq_obs_f=restframe_frequency,
-								stack_lite  = stack_light,
-								cp_bs_hdrs  = False,
-								stt_var     = True,
-								spc_wdt_dir = channel_width,
-								stt_mst_tbl = Cat_Ipt_Tbl      , stt_hdr='RDS_B',
-								stt_syn     = True         , stt_syn_tbl = cat_tbl_stk)
+Stack_Res      = Cube_Stack(cubetoread,stk_ofn_prfx,weights,
+			sig_clp     = False,sufix=channel_width,freq_obs_f=restframe_frequency,
+			stack_lite  = stack_light,
+			cp_bs_hdrs  = False,
+			stt_var     = True,
+			spc_wdt_dir = channel_width,
+			stt_mst_tbl = Cat_Ipt_Tbl      , stt_hdr='RDS_B',
+			stt_syn     = True         , stt_syn_tbl = cat_tbl_stk)
 ```
 
+
+VSAT-3D can then be used to measure the line flux emission of these synthetic datacubes. By fixing _nz=1_ it possible to geenerate synthetic images, and tthen measdure tthiier flux with VSAT-2D.
 
 ## Dependencies
 Currently VSAT works only with astropy 2.0 as it relies on pyraf continuum task for continuum normalization. However a new version will be released dropping this dependency.
