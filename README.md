@@ -44,14 +44,14 @@ VSAT-Syn is part of the Valparaíso Stacking Analysis Tool (VSAT), it provide a 
 ```amp_noise``` defines the noise amplitude.
 
 ## Spectral Gaussian
-If ```True``` ```fixed_amp_ns``` will fix the spectal gaussian amplitude while ```fixed_width_str```fixes the spectral width for the datacubes.
-```random_choice_type```defines the assumed random distrubution:  ```uniform,gauss```The limits for the generated source are define by: ```A_min_1dg``` and ```A_max_1dg```define the amplitude limits , ```ofs_min_1dg```  and ```ofs_max_1dg```  define the offset limiits , 
+If ```fixed_amp_ns=True``` the spectal gaussian amplitude will be fixed, ```fixed_width_str=True``` fixes the spectral width for the datacubes.
+```random_choice_type```defines the assumed random distrubution:  ```uniform,gauss```. The limits for the generated source are defined by: ```A_min_1dg``` and ```A_max_1dg```define the amplitude limits, ```ofs_min_1dg```  and ```ofs_max_1dg```  define the offset limiits , 
 ```sigma_min_1dg``` and ```sigma_max_1dg``` define the channel width limits.
-```n_noise_min``` and ```sigma_max_1dgn_noise_max```    define the _n X times_ the source ampliitude in terms of the noise level
+```n_noise_min``` and ```sigma_max_1dgn_noise_max```    defines the source amplitude in terms of the noise level _i.e. A = n X times noise_.
 
-## Source parameters
+## Source 2D parameters
 The number of generated sources is defined by ```n```, ```A``` define the amplitude limits, ```ofs_min,ofs_max``` define the spatial offset,
-```sigmax_min,sigmax_max,sigmay_min,sigmay_max```  define the soource size limits. If ```starshape = 'circular' ```  these ```x,y```will be equal.
+```sigmax_min,sigmax_max,sigmay_min,sigmay_max```  define the source size (_x,y_) limits. If ```starshape = 'circular' ```  these ```x,y```will be identical.
 
 ## PSF 2D
 ```fwhm_2d``` define the spatial fwhm.
@@ -61,7 +61,7 @@ The number of generated sources is defined by ```n```, ```A``` define the amplit
 The Example.py script contains an example to generate 27 datacubes of with spatial size: 256X256 consiidering 12 spectral channels. These synthetic datacubes are then stacked to then measure their flux  as eexemplified in VSAT-3D. Then by simple running ```python Example.py``` will complete all the following steps below. The following  snippets are extracts contained in the Example.py file and will guide you through the file. 
 
 ###### "Synthetic datacubes"
-The following snippet will gnerate 27 datacubes.
+The following snippet will generate 27 datacubes with the following dimensions _256 X 256 X 17_.
 
 ```python
 		Synthetic_Cube_Output = Create_Synthetic_Cube(nx,ny,nz,sigma_fwhm_2d,
@@ -96,6 +96,7 @@ The following snippet will gnerate 27 datacubes.
 								stt_mst_tbl = Cat_Ipt_Tbl      , stt_hdr='RDS_B',
 								stt_syn     = True         , stt_syn_tbl = cat_tbl_stk)
 ```
+
 
 ## Dependencies
 Currently VSAT works only with astropy 2.0 as it relies on pyraf continuum task for continuum normalization. However a new version will be released dropping this dependency.
