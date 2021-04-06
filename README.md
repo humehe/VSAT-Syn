@@ -37,5 +37,105 @@ VSAT-Syn is part of the Valparaíso Stacking Analysis Tool (VSAT), it provide a 
  9. Fnc_Syn_Utl.py
    - Auxiliary functions for the stacking analysis.
 
-## Parameters
-VSAT-Syn generate synthetic datacubes mimicking the observatioinal conditions of spectroscopic datacubes. Although VSAT-Syn was design to mimic the generated imaages from interferometric datasets, VSAT-Syn can be used to simulate other types of datacubes. VSAT-Syn can also obe used to simulate 2D images assuming single-channels datacubes. The generated datacubes can be then stacked and used to measure the flux froom the composite images to estimate the systematic flux measurement errors.
+## Image size
+```nx```, ```ny``` and ``nchan`` define the dimensions of the datacube, while ```scale```defiines the arcsec/pixel scale.
+
+## Noise parameters
+```amp_noise``` defines the noise amplitude.
+
+## Spectral Gaussian
+If ```True``` ```fixed_amp_ns``` will fix the spectal gaussian amplitude while ```fixed_width_str```fixes the spectral width for the datacubes.
+```random_choice_type```defines the assumed random distrubution:  ```uniform,gauss```The limits for the generated source are define by: ```A_min_1dg``` and ```A_max_1dg```define the amplitude limits , ```ofs_min_1dg```  and ```ofs_max_1dg```  define the offset limiits , 
+```sigma_min_1dg``` and ```sigma_max_1dg``` define the channel width limits.
+```n_noise_min``` and ```sigma_max_1dgn_noise_max```    define the _n X times_ the source ampliitude in terms of the noise level
+
+## Source parameters
+The number of generated sources is defined by ```n```, ```A``` define the amplitude limits, ```ofs_min,ofs_max``` define the spatial offset,
+```sigmax_min,sigmax_max,sigmay_min,sigmay_max```  define the soource size limits. If ```starshape = 'circular' ```  these ```x,y```will be equal.
+
+## PSF 2D
+```fwhm_2d``` define the spatial fwhm.
+
+## Example
+
+The Example.py script contains an example to generate 27 datacubes of with spatial size: 256X256 consiidering 12 spectral channels. These synthetic datacubes are then stacked to then measure their flux  as eexemplified in VSAT-3D. Then by simple running ```python Example.py``` will complete all the following steps below. The following  snippets are extracts contained in the Example.py file and will guide you through the file. 
+
+###### "Synthetic datacubes"
+The following snippet will gnerate 27 datacubes.
+
+```python
+		Synthetic_Cube_Output = Create_Synthetic_Cube(nx,ny,nz,sigma_fwhm_2d,
+								A_min_csi         = A_min          , A_max_csi        = A_max                           ,
+								ofs_min_csi       = ofs_min        , ofs_max_csi      = ofs_max                         ,
+								sigmax_min_csi    = sigmax_min     , sigmax_max_csi   = sigmax_max                      ,
+								sigmay_min_csi    = sigmay_min     , sigmay_max_csi   = sigmay_max                      ,
+								sx_fxd_str        = sigmax_max     , sy_fxd_str       = sigmay_max                      ,
+								chn_wth_sze       = channel_width  , theta_csi        = Theta                           ,
+								theta_vl_1dg_str  = Theta_val      ,
+								shape_csi         = starshape      , amp_star_gauss   = True                            ,
+								fixed_width_str   = fixed_width_str, sgm_1d_str_fxd   = str_sgm_rnd_cbe                 ,
+								#fixed_width_str   = False         , sgm_1d_str_fxd   = str_sgm_rnd_fxd_cbe[rep_nse],
+								A_min_1dg_str     = A_min_1dg      , A_max_1dg_str    = A_max_1dg                       ,
+								sigma_min_1dg_str = sigma_min_1dg  , sigma_max_1dg_str = sigma_max_1dg                  ,
+								fixed_amp_ns      = fixed_amp_ns   , amp_nse_type      = 'constant'                     , 
+								amp_1d_nse_fxd    = nse_amp_rnd_cbe,
+								A_min_1dg_nse     = n_noise_min    , A_max_1dg_nse     = n_noise_max                    ,
+								cube_ofn_sfx      = str(repetition)+'-'+str(individual_datacube),
+								dst_img_dir       = img_dir_res
+								)
+```
+
+###### "Stacking"
+```python
+	Stack_Res      = Cube_Stack(cubetoread,stk_ofn_prfx,weights,
+								sig_clp     = False,sufix=channel_width,freq_obs_f=restframe_frequency,
+								stack_lite  = stack_light,
+								cp_bs_hdrs  = False,
+								stt_var     = True,
+								spc_wdt_dir = channel_width,
+								stt_mst_tbl = Cat_Ipt_Tbl      , stt_hdr='RDS_B',
+								stt_syn     = True         , stt_syn_tbl = cat_tbl_stk)
+```
+
+## Dependencies
+Currently VSAT works only with astropy 2.0 as it relies on pyraf continuum task for continuum normalization. However a new version will be released dropping this dependency.
+ - [astropy](https://www.astropy.org)
+ - [bottleneck](https://pypi.org/project/Bottleneck/)
+ - [pandas](https://pandas.pydata.org)
+ - [scipy](https://www.scipy.org)
+ - [numpy](https://numpy.org)
+ - [lmfit](https://lmfit.github.io/lmfit-py/)
+ - [matplotlib](https://matplotlib.org)
+ - [termcolor](https://pypi.org/project/termcolor/)
+ - [progressbar](https://pypi.org/project/progressbar2/)
+## License
+
+BSD 3-Clause License
+
+Copyright (c) 2021, VSAT-1D developers
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice, this
+   list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright notice,
+   this list of conditions and the following disclaimer in the documentation
+   and/or other materials provided with the distribution.
+
+3. Neither the name of the copyright holder nor the names of its
+   contributors may be used to endorse or promote products derived from
+   this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
