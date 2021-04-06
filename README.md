@@ -2,7 +2,7 @@
 Valparaíso Stacking Analysis Tool Synthetic Datacubes
 
 
-VSAT-Syn is part of the Valparaíso Stacking Analysis Tool (VSAT), it provide a series of tools for generating synthetic datacubes simulatiing datacubes coming from interferometric datasets 
+VSAT-Syn is part of the Valparaíso Stacking Analysis Tool (VSAT), it provide a series of tools for generating synthetic datacubes simulatiing datacubes coming from interferometric datasets. Although VSAT-Syn was designed to estimate the systematic flux measurement errors by mimiicking images geenerated from interferometric _uv_ datasets, VSAT-Syn can also be used to simulate other types of datacubes. VSAT-Syn can also be used to simulate 2D images, by simple assuming single-channels datacubes. The generated datacubes can be then stacked and used to measure the flux the composite images to estimate the systematic flux measurement errors.
 
 ![Alt text](./Figures-Syn/Synthetic-InOut-Stats-SNR-BIS.jpg?raw=true "3D datacube Stacked spectra Scheme.")
 
