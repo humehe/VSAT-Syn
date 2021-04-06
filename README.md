@@ -2,7 +2,7 @@
 Valparaíso Stacking Analysis Tool Synthetic Datacubes
 
 
-VSAT-Syn is part of the Valparaíso Stacking Analysis Tool (VSAT), it provide a series of tools for generating synthetic datacubes simulatiing datacubes coming from interferometric datasets. Although VSAT-Syn was designed to estimate the systematic flux measurement errors by mimiicking images geenerated from interferometric _uv_ datasets, VSAT-Syn can also be used to simulate other types of datacubes. VSAT-Syn can also be used to simulate 2D images, by simple assuming single-channels datacubes. The generated datacubes can be then stacked and used to measure the flux the composite images to estimate the systematic flux measurement errors.
+VSAT-Syn is part of the Valparaíso Stacking Analysis Tool (VSAT), it provide a series of tools to generate synthetic datacubes emulating image datacubes coming from interferometric datasets. Although VSAT-Syn was designed to estimate the systematic flux measurement errors by mimicking images generated from interferometric _uv_ datasets, VSAT-Syn can also be used to simulate other types of datacubes. VSAT-Syn can also be used to simulate 2D images, by simple assuming single-channels datacubes. The generated datacubes can then be used to generate composite datacubes to then measure their flux to quantify systematic flux measurement errors computed with VSAT-3D and VSAT-2D .
 
 ![Alt text](./Figures-Syn/Synthetic-InOut-Stats-SNR-BIS.jpg?raw=true "3D datacube Stacked spectra Scheme.")
 
@@ -17,7 +17,7 @@ VSAT-Syn is part of the Valparaíso Stacking Analysis Tool (VSAT), it provide a 
    - Math functions (e.g. cosmological constants, gaussian profiles for line fitting) needed throughout the stacking analysis.
 
 3. Fnc_Syn_Spc.py 
-   - Tools for modyfing datacubes including _e.g. masking, adding missing frequencies, eextract regions etc_
+   - Tools to modify datacubes including _e.g. masking, adding missing frequencies, eextract regions etc_
 
 4. Fnc_Syn_Stt.py 
    - Statistical funtions for datacubes.
