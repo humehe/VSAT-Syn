@@ -58,7 +58,7 @@ The number of generated sources is defined by ```n```, ```A``` define the amplit
 
 ## Example
 
-The Example.py script contains an example to generate synthetic datacubes with dimensions 256X256X17 per iteration. These synthetic datacubes (_N=5_) are stacked to then measure their flux as exemplified in VSAT-3D. Then by simple running ```python Example.py``` will complete all the following steps below. The following  snippets are extracts contained in the Example.py file and will guide you through the file. To run the script a input table catalogue (```CII_Sources_HATLAS-13CO-RDS_B-0.csv ```)is needed, this iis available in the _Example-VSAT-Syn.zip_ zip file. 
+The Example.py script contains an example to generate synthetic datacubes with dimensions 256X256X17 per iteration. These synthetic datacubes (_N=5_) are stacked to then measure their flux as exemplified in VSAT-3D. Then by simple running ```python Example.py``` will complete all the following steps below. The following  snippets are extracts contained in the Example.py file and will guide you through the file. To run the script a input table catalogue (```CII_Sources_HATLAS-13CO-RDS_B-0.csv```)is needed, and is available in the _Example-VSAT-Syn.zip_ zip file. 
 
 ###### "Synthetic datacubes"
 The following snippet will generate 27 datacubes with the following dimensions _256 X 256 X 17_.
