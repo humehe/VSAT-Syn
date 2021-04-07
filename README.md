@@ -58,7 +58,7 @@ The number of generated sources is defined by ```n```, ```A``` define the amplit
 
 ## Example
 
-The Example.py script contains an example to generate 27 datacubes of with spatial size: 256X256 consiidering 12 spectral channels. These synthetic datacubes are then stacked to then measure their flux  as eexemplified in VSAT-3D. Then by simple running ```python Example.py``` will complete all the following steps below. The following  snippets are extracts contained in the Example.py file and will guide you through the file. 
+The Example.py script contains an example to generate synthetic datacubes with dimensions 256X256X17 per iteration. These synthetic datacubes (_N=5_) are stacked to then measure their flux as exemplified in VSAT-3D. Then by simple running ```python Example.py``` will complete all the following steps below. The following  snippets are extracts contained in the Example.py file and will guide you through the file. 
 
 ###### "Synthetic datacubes"
 The following snippet will generate 27 datacubes with the following dimensions _256 X 256 X 17_.
@@ -74,7 +74,6 @@ Synthetic_Cube_Output = Create_Synthetic_Cube(nx,ny,nz,sigma_fwhm_2d,
 						theta_vl_1dg_str  = Theta_val      ,
 						shape_csi         = starshape      , amp_star_gauss   = True                            ,
 						fixed_width_str   = fixed_width_str, sgm_1d_str_fxd   = str_sgm_rnd_cbe                 ,
-						#fixed_width_str   = False         , sgm_1d_str_fxd   = str_sgm_rnd_fxd_cbe[rep_nse],
 						A_min_1dg_str     = A_min_1dg      , A_max_1dg_str    = A_max_1dg                       ,
 						sigma_min_1dg_str = sigma_min_1dg  , sigma_max_1dg_str = sigma_max_1dg                  ,
 						fixed_amp_ns      = fixed_amp_ns   , amp_nse_type      = 'constant'                     , 
@@ -100,7 +99,7 @@ Stack_Res      = Cube_Stack(cubetoread,stk_ofn_prfx,weights,
 VSAT-3D can then be used to measure the line flux emission of these synthetic datacubes. By fixing _nz=1_ it possible to geenerate synthetic images, and tthen measdure tthiier flux with VSAT-2D.
 
 ## Dependencies
-Currently VSAT works only with astropy 2.0 as it relies on pyraf continuum task for continuum normalization. However a new version will be released dropping this dependency.
+Currently VSAT works only with astropy 2.0 & python 2.7. However a new version will be soon released compatible witth python 3.X
  - [astropy](https://www.astropy.org)
  - [bottleneck](https://pypi.org/project/Bottleneck/)
  - [pandas](https://pandas.pydata.org)
