@@ -2,7 +2,7 @@
 Valparaíso Stacking Analysis Tool Synthetic Datacubes
 
 
-VSAT-Syn is part of the Valparaíso Stacking Analysis Tool (VSAT), it provide a series of tools to generate synthetic datacubes emulating image datacubes coming from interferometric datasets. Although VSAT-Syn was designed to estimate the systematic flux measurement errors by mimicking images generated from interferometric _uv_ datasets, VSAT-Syn can also be used to simulate other types of datacubes. VSAT-Syn can also be used to simulate 2D images, by simple assuming single-channels datacubes. The generated datacubes can then be used to generate composite datacubes to then measure their flux to quantify systematic flux measurement errors computed with VSAT-3D and VSAT-2D .
+VSAT-Syn is part of the Valparaíso Stacking Analysis Tool (VSAT), it provide a series of tools to generate synthetic datacubes emulating image datacubes coming from interferometric datasets. Although VSAT-Syn was designed to estimate the systematic flux measurement errors by mimicking the images generated from interferometric _uv_ datasets. VSAT-Syn can also be used to simulate _moment-0_ 2D images, by simple assuming single-channels datacubes. The generated synthetic fits files can then be used to generate composite images (2D/3D) and measure their flux to quantify systematic flux measurement errors computed with VSAT-3D and VSAT-2D .
 
 ![Alt text](./Figures-Syn/Synthetic-InOut-Stats-SNR-BIS.jpg?raw=true "3D datacube Stacked spectra Scheme.")
 
@@ -96,10 +96,12 @@ Stack_Res      = Cube_Stack(cubetoread,stk_ofn_prfx,weights,
 ```
 
 
-VSAT-3D can then be used to measure the line flux emission of these synthetic datacubes. By fixing _nz=1_ it possible to geenerate synthetic images, and tthen measdure tthiier flux with VSAT-2D.
+VSAT-3D can then be used to measure the line flux emission of these synthetic datacubes. By fixing _nz=1_ it possible to generate synthetic _moment-0_ 2D images, and then measure their fluxes with VSAT-2D.
 
 ## Dependencies
-Currently VSAT works only with astropy 2.0 & python 2.7. However a new version will be soon released compatible witth python 3.X
+## Dependencies
+Currently VSAT works only with astropy 2.0 and python 2.X. However a new version compatible wiith python 3.X and more recent astropy versions will be soon released dropping this dependency.
+
  - [astropy](https://www.astropy.org)
  - [bottleneck](https://pypi.org/project/Bottleneck/)
  - [pandas](https://pandas.pydata.org)
